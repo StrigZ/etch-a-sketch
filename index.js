@@ -4,9 +4,11 @@ const grid = document.querySelector(".grid");
 const squaresPerSideInput = document.querySelector("#squaresPerSideInput");
 const colorPickerInput = document.querySelector("#colorInput");
 const resetButton = document.querySelector("#resetGridButton");
+const rainbowModeButton = document.querySelector("#rainbowModeButton");
 
 const initialNumberOfSquaresPerSide = squaresPerSideInput.value;
 let isMouseDown = false;
+let isRainbowModeOn = false;
 let currentBrushColor = colorPickerInput.value;
 
 const addListeners = () => {
@@ -34,6 +36,16 @@ const addListeners = () => {
   });
 
   resetButton.addEventListener("click", resetGrid);
+
+  rainbowModeButton.addEventListener("click", (e) => {
+    if (isRainbowModeOn) {
+      isRainbowModeOn = false;
+      e.target.classList.remove("active");
+    } else {
+      isRainbowModeOn = true;
+      e.target.classList.add("active");
+    }
+  });
 };
 
 const setGridContainerDimensions = () => {
@@ -41,7 +53,14 @@ const setGridContainerDimensions = () => {
   grid.style.height = `${GRID_WIDTH_IN_PX}px`;
 };
 
+const getRandomColor = () =>
+  `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+
 const paintCell = (cell) => {
+  if (isRainbowModeOn) {
+    cell.style.backgroundColor = getRandomColor();
+    return;
+  }
   cell.style.backgroundColor = currentBrushColor;
 };
 

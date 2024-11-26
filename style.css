@@ -98,6 +98,20 @@ main {
     font-size: 1.25rem;
     cursor: pointer;
     border: none;
+
+    transition-property: color, background-color, border-color,
+      text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+
+    &.active {
+      background-color: #fff;
+      border: rgb(243, 61, 209) 1px solid;
+      color: rgb(243, 61, 209);
+    }
+  }
+
+  #resetGridButton {
     margin-top: auto;
   }
 }
