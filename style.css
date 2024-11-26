@@ -1,0 +1,100 @@
+*,
+*::after,
+*::before {
+  bottom: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main {
+  display: flex;
+  gap: 1rem;
+}
+.grid {
+  display: flex;
+  height: auto;
+  aspect-ratio: 1;
+  flex-wrap: wrap;
+  user-select: none;
+}
+
+.cell {
+  background: #676666;
+  border: 0.5px solid black;
+  aspect-ratio: 1;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: 3px solid rgb(243, 61, 209);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f2b8e1;
+  color: white;
+  font-size: 1.25rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    label {
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  #squaresPerSideInput {
+    background-color: transparent;
+    color: white;
+    font-size: 1rem;
+
+    text-align: center;
+    outline: none;
+    border-radius: 0.25rem;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    border: 3px solid white;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      /* display: none; <- Crashes Chrome on hover */
+      -webkit-appearance: none;
+      margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+
+    min-width: 100px;
+    flex: 1;
+  }
+
+  #colorInput {
+    border: none;
+    background-color: transparent;
+    border-radius: 1rem;
+    min-width: 100px;
+    height: 50px;
+    flex: 1;
+  }
+
+  button {
+    background-color: rgb(243, 61, 209);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 1.25rem;
+    cursor: pointer;
+    border: none;
+    margin-top: auto;
+  }
+}
