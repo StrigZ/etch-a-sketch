@@ -8,31 +8,34 @@
   </head>
   <body>
     <main>
-      <div class="controls">
-        <div class="size">
-          <label for="squaresPerSideInput">Size: </label>
-          <input
-            type="number"
-            name="slides"
-            id="squaresPerSideInput"
-            max="100"
-            step="4"
-            min="4"
-            value="32"
-          />
+      <h1>Etch-A-Sketch</h1>
+      <div class="main">
+        <div class="controls">
+          <div class="size">
+            <label for="squaresPerSideInput">Size: </label>
+            <input
+              type="number"
+              name="slides"
+              id="squaresPerSideInput"
+              max="100"
+              step="4"
+              min="4"
+              value="32"
+            />
+          </div>
+          <div class="color">
+            <label for="colorInput">Color</label>
+            <input type="color" id="colorInput" />
+          </div>
+          <button id="rainbowModeButton">Rainbow Mode</button>
+          <div class="shading">
+            <label for="shadingModeCheckbox">Shading Mode</label>
+            <input id="shadingModeCheckbox" type="checkbox" />
+          </div>
+          <button id="resetGridButton">Clear Grid</button>
         </div>
-        <div class="color">
-          <label for="colorInput">Color</label>
-          <input type="color" id="colorInput" />
-        </div>
-        <button id="rainbowModeButton">Rainbow Mode</button>
-        <div class="shading">
-          <label for="shadingModeCheckbox">Shading Mode</label>
-          <input id="shadingModeCheckbox" type="checkbox" />
-        </div>
-        <button id="resetGridButton">Clear Grid</button>
+        <div class="grid"></div>
       </div>
-      <div class="grid"></div>
     </main>
     <script src="./index.js"></script>
   </body>
