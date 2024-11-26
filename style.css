@@ -12,16 +12,19 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 main {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
+
 .grid {
   display: flex;
-  height: auto;
   aspect-ratio: 1;
   flex-wrap: wrap;
   user-select: none;
+  flex-basis: 500px;
 }
 
 .cell {
