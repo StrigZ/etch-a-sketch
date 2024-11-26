@@ -9,37 +9,9 @@ const initialNumberOfSquaresPerSide = squaresPerSideInput.value;
 let isMouseDown = false;
 let currentBrushColor = colorPickerInput.value;
 
-const addMouseListeners = () => {
+const addListeners = () => {
   document.addEventListener("mousedown", () => (isMouseDown = true));
   document.addEventListener("mouseup", () => (isMouseDown = false));
-};
-
-const setGridContainerDimensions = () => {
-  grid.style.width = `${GRID_WIDTH_IN_PX}px`;
-};
-
-const paintCell = (cell) => {
-  cell.style.backgroundColor = currentBrushColor;
-};
-
-const resetGrid = () => generateGrid(squaresPerSideInput.value);
-
-const generateGrid = (side) => {
-  grid.innerHTML = "";
-  for (let i = 0; i < side ** 2; i++) {
-    const cell = document.createElement("div");
-
-    cell.style.width = `${GRID_WIDTH_IN_PX / side}px`;
-    cell.classList.add("cell");
-
-    grid.appendChild(cell);
-  }
-};
-
-function main() {
-  addMouseListeners();
-  setGridContainerDimensions();
-  generateGrid(initialNumberOfSquaresPerSide);
 
   colorPickerInput.addEventListener("change", (e) => {
     currentBrushColor = e.target.value;
@@ -62,6 +34,38 @@ function main() {
   });
 
   resetButton.addEventListener("click", resetGrid);
+};
+
+const setGridContainerDimensions = () => {
+  grid.style.width = `${GRID_WIDTH_IN_PX}px`;
+  grid.style.height = `${GRID_WIDTH_IN_PX}px`;
+};
+
+const paintCell = (cell) => {
+  cell.style.backgroundColor = currentBrushColor;
+};
+
+const resetGrid = () => generateGrid(squaresPerSideInput.value);
+
+const generateGrid = (side) => {
+  grid.innerHTML = "";
+  for (let i = 0; i < side ** 2; i++) {
+    const cell = document.createElement("div");
+    const gridSide = GRID_WIDTH_IN_PX;
+    const cellSide = gridSide / side;
+
+    cell.style.width = `${cellSide}px`;
+
+    cell.classList.add("cell");
+
+    grid.appendChild(cell);
+  }
+};
+
+function main() {
+  addListeners();
+  setGridContainerDimensions();
+  generateGrid(initialNumberOfSquaresPerSide);
 }
 
 main();
