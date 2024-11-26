@@ -45,14 +45,17 @@ function main() {
     currentBrushColor = e.target.value;
   });
 
-  grid.addEventListener("mouseover", (e) => {
+  grid.addEventListener("mousemove", (e) => {
     if (isMouseDown) {
       paintCell(e.target);
     }
   });
 
+  grid.addEventListener("click", (e) => {
+    paintCell(e.target);
+  });
+
   squaresPerSideInput.addEventListener("change", (e) => {
-    resetGrid();
     if (e.target.value > 100) e.target.value = 100;
     if (e.target.value < 4) e.target.value = 4;
     generateGrid(e.target.value);
