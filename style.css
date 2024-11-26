@@ -28,8 +28,7 @@ main {
 }
 
 .cell {
-  background: #676666;
-  border: 0.5px solid black;
+  background: #afafaf;
   aspect-ratio: 1;
 }
 
@@ -45,7 +44,8 @@ main {
   color: white;
   font-size: 1.25rem;
 
-  div {
+  .size,
+  .color {
     display: flex;
     align-items: center;
     width: 100%;

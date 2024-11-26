@@ -9,7 +9,7 @@
   <body>
     <main>
       <div class="controls">
-        <div>
+        <div class="size">
           <label for="squaresPerSideInput">Size: </label>
           <input
             type="number"
@@ -21,11 +21,15 @@
             value="32"
           />
         </div>
-        <div>
+        <div class="color">
           <label for="colorInput">Color</label>
           <input type="color" id="colorInput" />
         </div>
         <button id="rainbowModeButton">Rainbow Mode</button>
+        <div class="shading">
+          <label for="shadingModeCheckbox">Shading Mode</label>
+          <input id="shadingModeCheckbox" type="checkbox" />
+        </div>
         <button id="resetGridButton">Clear Grid</button>
       </div>
       <div class="grid"></div>

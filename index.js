@@ -5,10 +5,12 @@ const squaresPerSideInput = document.querySelector("#squaresPerSideInput");
 const colorPickerInput = document.querySelector("#colorInput");
 const resetButton = document.querySelector("#resetGridButton");
 const rainbowModeButton = document.querySelector("#rainbowModeButton");
+const shadingModeButton = document.querySelector("#shadingModeCheckbox");
 
 const initialNumberOfSquaresPerSide = squaresPerSideInput.value;
 let isMouseDown = false;
 let isRainbowModeOn = false;
+let isShadingModeOn = false;
 let currentBrushColor = colorPickerInput.value;
 
 const addListeners = () => {
@@ -19,13 +21,17 @@ const addListeners = () => {
     currentBrushColor = e.target.value;
   });
 
-  grid.addEventListener("mousemove", (e) => {
+  grid.addEventListener("mouseover", (e) => {
     if (isMouseDown) {
       paintCell(e.target);
     }
   });
 
   grid.addEventListener("click", (e) => {
+    if (e.target.classList.contains("grid")) {
+      return;
+    }
+
     paintCell(e.target);
   });
 
@@ -46,6 +52,10 @@ const addListeners = () => {
       e.target.classList.add("active");
     }
   });
+
+  shadingModeButton.addEventListener("change", (e) => {
+    isShadingModeOn = !isShadingModeOn;
+  });
 };
 
 const setGridContainerDimensions = () => {
@@ -56,12 +66,28 @@ const setGridContainerDimensions = () => {
 const getRandomColor = () =>
   `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
+const increaseBrightness = (cell) => {
+  if (cell.style.filter) {
+    const preValue = +cell.style.filter.match(/[0-9]+/g);
+    if (preValue === 100) {
+      return;
+    }
+    const newValue = preValue + 10;
+    cell.style.filter = `brightness(${newValue}%)`;
+  } else {
+    cell.style.filter = "brightness(50%)";
+  }
+};
+
 const paintCell = (cell) => {
   if (isRainbowModeOn) {
     cell.style.backgroundColor = getRandomColor();
-    return;
+  } else {
+    cell.style.backgroundColor = currentBrushColor;
+    if (isShadingModeOn) {
+      increaseBrightness(cell);
+    }
   }
-  cell.style.backgroundColor = currentBrushColor;
 };
 
 const resetGrid = () => generateGrid(squaresPerSideInput.value);
@@ -74,7 +100,6 @@ const generateGrid = (side) => {
     const cellSide = gridSide / side;
 
     cell.style.width = `${cellSide}px`;
-
     cell.classList.add("cell");
 
     grid.appendChild(cell);
